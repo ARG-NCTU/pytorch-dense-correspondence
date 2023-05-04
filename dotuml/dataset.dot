@@ -1,0 +1,23 @@
+ClassDiagram {
+  class Dataset {
+    public __len__() : int
+  }
+  
+  class DenseCorrespondenceDataset {
+    public compute_reward()  
+    public reset()
+    public debug
+    public mode
+    public both_to_tensor
+  }
+
+  class SpartanDataset {
+    public __init__(self)
+    public _setup_scene_data(self, config)
+    public seed()
+    public reset()
+  }
+  
+  DenseCorrespondenceDataset -g-> Dataset
+  SpartanDataset -g-> DenseCorrespondenceDataset
+}

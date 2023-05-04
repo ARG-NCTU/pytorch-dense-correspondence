@@ -1,0 +1,51 @@
+ClassDiagram {
+  class PandaDataFrameWrapper {
+    data
+    _columns
+    _df
+    _series
+
+		public __init__(self, columns)
+    public set_value(self, key, value)
+    public get_value(self, key)
+    public dataframe(self)
+    public dataframe(self, value)  
+
+  }
+
+  class DCNEvaluationPandaTemplate {
+    __init__(self)
+    columns
+  }
+  
+  class DCNEvaluationPandaTemplateAcrossObject {
+    __init__(self)
+    columns    
+  }
+  
+  class DenseCorrespondenceEvaluation {
+    _configs
+    _dataset
+    public __init__(self, config)
+    public config(self)
+    public dataset(self)
+    public dataset(self, value)
+    public load_network_from_config(self, name)
+    public load_dataset_for_network(self, network_name)
+    public load_dataset(self)
+    public get_output_dir(self)
+    public evaluate_single_network(self, network_name, mode, save)
+    public evaluate_single_network_cross_scene(self, network_name, save)
+    public evaluate_single_network_cross_instance(self, network_name, full_path_cross_instance_labels, save)
+    static public evaluate_network(dcn, dataset, num_image_pairs, num_matches_per_image_pair)
+    public static evaluate_network_cross_scene(dcn, dataset, save)
+    public static evaluate_network_cross_instance(dcn, dataset, full_path_cross_instance_labels, save)
+    public static parse_cross_scene_data(dataset)
+    public static plot_descriptor_colormaps()
+  }  
+  
+  
+  DCNEvaluationPandaTemplate -g-> PandaDataFrameWrapper
+  DCNEvaluationPandaTemplateAcrossObject -g-> PandaDataFrameWrapper
+
+}
