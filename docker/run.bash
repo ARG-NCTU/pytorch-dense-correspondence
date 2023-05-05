@@ -3,8 +3,9 @@
 ARGS=("$@")
 
 CONTAINER_NAME="pytorch-dense-correspondence"
-REPOSITORY="yutingk/pytorch-dense-correspondence"
-home_directory="/home/$USER"
+REPOSITORY="argnctu/pytorch-dense-correspondence"
+
+home_directory="/home/arg"
 source_dir="/home/$USER/pytorch-dense-correspondence"
 
 TAG="latest"
@@ -72,8 +73,8 @@ docker run \
     -v "/var/run/docker.sock:/var/run/docker.sock" \
     -p 8888:8888 \
     --ipc=host \
-    --user "$USER:root" \
-    --workdir "/home/$USER/code" \
+    --user "arg:root" \
+    --workdir "/home/arg/code" \
     --name "${CONTAINER_NAME}" \
     --network host \
     --privileged \

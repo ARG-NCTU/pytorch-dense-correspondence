@@ -1,3 +1,3 @@
 #!/bin/sh
 
-docker build --rm -t yutingk/pytorch-dense-correspondence .
+docker build --rm -t argnctu/pytorch-dense-correspondence .

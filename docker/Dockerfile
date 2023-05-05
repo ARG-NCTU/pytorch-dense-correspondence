@@ -1,23 +1,27 @@
-# FROM nvidia/cuda:10.0-cudnn7-devel-ubuntu16.04
 FROM nvidia/cuda:10.0-cudnn7-devel-ubuntu18.04
 
-ENV DEBIAN_FRONTEND=noninteractive
 ENV ROS_DISTRO melodic
-
-ARG USER_NAME
-ARG USER_PASSWORD
-ARG USER_ID
-ARG USER_GID
 
 RUN apt-get update
 RUN apt install sudo
-RUN useradd -ms /bin/bash $USER_NAME
-RUN usermod -aG sudo $USER_NAME
-RUN yes $USER_PASSWORD | passwd $USER_NAME
 
-# set uid and gid to match those outside the container
-RUN usermod -u $USER_ID $USER_NAME 
-RUN groupmod -g $USER_GID $USER_NAME
+ENV DEBIAN_FRONTEND=noninteractive
+ENV SHELL=/bin/bash \
+    USER=arg \
+    USER_NAME=arg \
+    NB_UID=1000 \
+    LANG=en_US.UTF-8 \
+    LANGUAGE=en_US.UTF-8
+
+ENV HOME=/home/${USER}
+
+RUN adduser --disabled-password \
+    --gecos "Default user" \
+    --uid ${NB_UID} \
+    ${USER}
+
+RUN echo "root:root" | chpasswd
+RUN echo "${USER}:111111" | chpasswd
 
 WORKDIR /home/$USER_NAME
 ENV USER_HOME_DIR=/home/$USER_NAME
